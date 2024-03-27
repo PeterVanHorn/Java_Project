@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NavigationBar</title>
+
+</head>
+
+
+<!-- nav bar element that is imported into most of the views. -->
+
+<body>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/sprinklerProgram/list}">Irrigation Management System</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a class="nav-link" th:href="@{/sprinklerProgram/list}">Program List</a></li>
+
+            <li><a class="nav-link" th:href="@{/sprinklerZone/list}">Zone List</a></li>
+            
+            <li><a class="nav-link" th:href="@{/sprinklerProgram/add}">Create New Program</a></li>
+            
+            <li><a class="nav-link" th:href="@{/sprinklerZone/add}">Create New Zone</a></li>
+            
+            <li><a class="nav-link" th:href="@{/sprinklerProgram/run}">Auto Run</a></li>
+        </ul>
+    </div>    
+</nav>
+
+</body>
+</html>

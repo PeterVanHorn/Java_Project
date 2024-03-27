@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<head>
+    <title>Edit Program</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/core.css" th:href="@{/css/core.css}" rel="stylesheet" media="screen"/>
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.3/jquery.min.js" th:src="@{/webjars/jquery/2.2.3/jquery.min.js}"></script>
+</head>
+
+
+<!-- view to allow the user to edit a program. mostly borrowed from JAVAII assignment on JPAMVC.
+text input fields for programName, Device, and StartTime. 
+maintains the id in a hidden field and assigns isRun attribute to false.
+sends ProgramForm to submitedit method in ProgramController -->
+
+
+<body>
+<!-- Insert content into the layouts/layout.html -->
+<th:block layout:fragment="content">
+
+	<div th:insert="navbar :: navbar">  </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" th:object="${programEditForm}" th:action="@{/sprinklerProgram/submitedit}" method="post">
+                <div class="form-group">
+                    <label for="name">Program Name</label>
+                    <input type="text" id="programName" th:value="*{programName}" name="programName" class="form-control" />
+                    <input type="hidden" id="sprinklerProgramId" th:value="*{sprinklerProgramId}" name="sprinklerProgramId" />
+                    <input type="hidden" id="isRun" th:value="*{isRun}" name="isRun" />
+                </div>
+                <div class="form-group">
+                    <label for="startTime">Start time</label>
+                    <input type="text" id="startTime" th:value="*{startTime}" name="startTime" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="devices">Select Device</label>
+			        <select th:field="*{deviceId}" id="device">
+					    <option value="0">Select Device</option>
+					    <option th:each="dev : ${devices}" th:value="${dev.deviceId}" th:text="${dev.deviceName}"></option>
+					</select>
+                </div>
+                <input type="submit" class="btn btn-success" value="Submit Changes" />
+            </form>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

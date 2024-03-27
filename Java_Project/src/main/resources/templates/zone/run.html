@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>Zone Run</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="../static/css/core.css"
+          th:href="@{/css/core.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.3/jquery.min.js"
+            th:src="@{/webjars/jquery/2.2.3/jquery.min.js}"></script>
+</head>
+
+
+<!-- landing view when user clicks "Run Zone" in zonelist.html
+just displays "zoneName" is running. still provides navbar to allow navigation -->
+
+
+
+<body>
+<!-- Insert content into the layouts/layout.html -->
+<th:block layout:fragment="content">
+
+	<div th:insert="navbar :: navbar">  </div>
+	<div th:object="${zon}">
+		<h3><span th:text="*{zoneName}">Name</span> running</h3>
+	</div>
+</th:block>
+</body>
+</html>

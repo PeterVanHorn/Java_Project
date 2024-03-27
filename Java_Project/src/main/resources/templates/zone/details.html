@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>Hello Spring Boot!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="../static/css/core.css"
+          th:href="@{/css/core.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.3/jquery.min.js"
+            th:src="@{/webjars/jquery/2.2.3/jquery.min.js}"></script>
+</head>
+
+
+<!-- Displays zone details including those hidden during creation and editing. 
+also lists program to which zone is assigned. maintains navbar for navigation -->
+
+
+<body>
+<!-- Insert content into the layouts/layout.html -->
+<th:block layout:fragment="content">
+
+	<div th:insert="navbar :: navbar">  </div>
+
+    <section id="details">
+    <h3>Zone:</h3>
+         <div th:object="${zon}">
+		     <p>Name: <span th:text="*{zoneName}">Name</span></p>
+		     <p>Type: <span th:text="*{zoneType}">Type</span></p>
+		     <p>Run Time: <span th:text="*{runTime}">Run Time</span></p>
+		     <p>Running: <span th:text="*{isRun}">Running</span></p>
+		     <p>Program: <span th:text="*{sprinklerProgram.programName}">Program</span></p>
+		 </div>
+    </section>
+</th:block>
+</body>
+</html>

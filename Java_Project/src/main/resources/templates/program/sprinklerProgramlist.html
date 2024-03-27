@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>Programs</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="../static/css/core.css"
+          th:href="@{/css/core.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.3/jquery.min.js"
+            th:src="@{/webjars/jquery/2.2.3/jquery.min.js}"></script>
+</head>
+
+
+<!-- view to list programs. lists programs and provides buttons to run or edit each one.
+"Run Program" link leads to run method on ProgramController.java
+"Edit Program" link leads to edit/{id} method in ProgramController.java -->
+
+
+<body>
+<!-- Insert content into the layouts/layout.html -->
+<th:block layout:fragment="content">
+
+	<div th:insert="navbar :: navbar">  </div>
+	
+	<h3>Programs</h3>
+
+	<table>
+		<tr th:each="program : ${programs}">
+			<td th:text="${program.programName}">A Program</td>
+			<td><a class="nav-link" th:href="@{/sprinklerProgram/run/{id}(id=${program.sprinklerProgramId})}">Run Program</a></td>
+			<td><a th:href="@{/sprinklerProgram/edit/{id}(id=${program.sprinklerProgramId})}">Edit Program</a></td>
+		</tr>
+	</table>
+</th:block>
+</body>
+</html>
